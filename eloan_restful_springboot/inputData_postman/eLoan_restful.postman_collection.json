@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "f2fc7590-d213-4434-bba0-6b5eda4d808a",
+		"name": "eLoan_restful",
+		"description": "eLoan Restful application collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "getAllClerks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/all-clerks",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"all-clerks"
+							]
+						},
+						"description": "get the list of all clerks"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllManagers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/admin/all-managers",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"all-managers"
+							]
+						},
+						"description": "get all the managers list"
+					},
+					"response": []
+				},
+				{
+					"name": "register_clerk",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"test_clerk\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/admin/register-clerk",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"register-clerk"
+							]
+						},
+						"description": "Register a loan clerk"
+					},
+					"response": []
+				},
+				{
+					"name": "register_manager",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"test_manager\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{url}}/admin/register-manager",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"admin",
+								"register-manager"
+							]
+						},
+						"description": "Register a manager"
+					},
+					"response": []
+				}
+			],
+			"description": "Admin API's",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "37b9467a-b732-466f-abc5-091a232a7304",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c08e642-83d3-440d-b38c-a44a0f2e65da",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "register_new_user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\" : \"userfirst\",\r\n    \"lastName\" : \"userlast\",\r\n    \"mobile\" : 9999999999,\r\n    \"email\" : \"user@gmail.com\",\r\n    \"address\" : \"Bangalore, India\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/customer/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"register"
+							]
+						},
+						"description": "Register a new user"
+					},
+					"response": []
+				},
+				{
+					"name": "apply_loan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"loanName\" : \"bike\",\r\n    \"loanAmount\" : 50000 ,\r\n    \"loanApplicationDate\" : \"02-12-1995\",\r\n    \"businessStructure\" : \"Individual\",\r\n    \"billingIndicator\" : \"salaried person\",\r\n    \"taxIndicator\" : \"tax payer\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/customer/apply-loan/{{customerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"apply-loan",
+								"{{customerId}}"
+							]
+						},
+						"description": "Apply Loan"
+					},
+					"response": []
+				},
+				{
+					"name": "getLoanStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/customer/loan-status/{{loanAppId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"loan-status",
+								"{{loanAppId}}"
+							]
+						},
+						"description": "Get the status f a particular loan"
+					},
+					"response": []
+				},
+				{
+					"name": "getUserAllLoanStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/customer/loan-status-all/{{customerId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"customer",
+								"loan-status-all",
+								"{{customerId}}"
+							]
+						},
+						"description": "Fetches details of all loans applied by a customer"
+					},
+					"response": []
+				},
+				{
+					"name": "sanctionLoan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"loanAmountSanctioned\" : 2000,\r\n    \"termOfLoan\" : 8,\r\n    \"interestRate\" : 10,\r\n    \"paymentStartDate\" : \"2020-01-02\" ,\r\n    \"remarks\" : \"Loan has been approved !!\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/manager/sanction-loan/{{managerId}}/{{loanAppId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"sanction-loan",
+								"{{managerId}}",
+								"{{loanAppId}}"
+							]
+						},
+						"description": "Saction Loan"
+					},
+					"response": []
+				}
+			],
+			"description": "Customer API's",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "88d810eb-df43-4ac8-a2a9-cb6ffbb0ce2f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c168dbf4-854f-41a1-9b9b-c04ff750a708",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Manager",
+			"item": [
+				{
+					"name": "allProcessedLoans",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/manager/all-processed",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"all-processed"
+							]
+						},
+						"description": "Fetches list of applied loans processed by loan clerk"
+					},
+					"response": []
+				},
+				{
+					"name": "rejectLoan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"remark\" : \"Loan is rejected\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/manager/reject-loan/{{managerId}}/{{loanAppId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"manager",
+								"reject-loan",
+								"{{managerId}}",
+								"{{loanAppId}}"
+							]
+						},
+						"description": "Reject loan application by providing remark"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Clerk",
+			"item": [
+				{
+					"name": "getAllAppliedLoans",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/clerk/all-applied",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clerk",
+								"all-applied"
+							]
+						},
+						"description": "Fetches list of applied loans not yet processed"
+					},
+					"response": []
+				},
+				{
+					"name": "processLoan",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"acresOfLand\" : 10,\r\n    \"landValue\" : 456000,\r\n    \"appraisedBy\" :\"user3\",\r\n    \"valuationDate\" :\"09-09-2020\",\r\n    \"addressOfProperty\" : \"Banga\",\r\n    \"suggestedAmountOfLoan\" : 440000\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}/clerk/process/{{clerkId}}/{{loanAppId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"clerk",
+								"process",
+								"{{clerkId}}",
+								"{{loanAppId}}"
+							]
+						},
+						"description": "Process the loan to forward to Manager"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
